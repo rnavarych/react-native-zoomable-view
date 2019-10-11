@@ -483,6 +483,7 @@ class ReactNativeZoomableView extends Component {
       delete this.lastPressHolder;
       this._handleDoubleTap(e, gestureState);
     } else {
+      this._handleSingleTap(e, gestureState);
       this.lastPressHolder = now;
     }
   }
@@ -520,6 +521,18 @@ class ReactNativeZoomableView extends Component {
       }));
     }
 
+  }
+
+  /**
+   * Handles the single tap event
+   *
+   * @param event
+   * @param gestureState
+   *
+   * @private
+   */
+  _handleSingleTap(e, gestureState) {
+    this.props.onSingleTap(e, gestureState);
   }
 
 
@@ -643,6 +656,7 @@ ReactNativeZoomableView.propTypes = {
   onZoomEnd: PropTypes.func, // triggered after pinch movement ended
   onDoubleTapBefore: PropTypes.func,
   onDoubleTapAfter: PropTypes.func,
+  onSingleTap: PropTypes.func,
   onShiftingBefore: PropTypes.func, // triggered before shift movement
   onShiftingAfter: PropTypes.func, // triggered after shift movement
   onShiftingEnd: PropTypes.func, // triggered after shift movement ended
